@@ -8,7 +8,7 @@ import { fetchPosts } from "../Controllers/FetchPostsController.js";
 import { deletePost } from "../Controllers/DeletePostController.js";
 import { deleteAllPosts } from "../Controllers/DeleteAllPostsController.js";
 import { profile } from "../Controllers/profileController.js";
-import { authenticateToken } from "../Authentication/AuthenticateToken.js";
+import { authenticateToken } from "../utils/AuthenticateToken.js";
 
 const router = express.Router();
 

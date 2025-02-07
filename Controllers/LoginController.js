@@ -3,7 +3,7 @@ import { missingInput } from "./missingInputChecker.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { generateToken } from "../Authentication/generateToken.js";
+import { generateToken } from "../utils/generateToken.js";
 dotenv.config();
 
 export const login = async (req, res) => {
@@ -25,9 +25,14 @@ export const login = async (req, res) => {
     if (!passOk) {
       return res.status(400).json({ error: "incorrect password" });
     }
-    const token = generateToken(user);
+    const token = generateToken(res, user);
     res
-      .cookie("token", token)
+      .cookie("token", token, {
+        httpOnly: true, // Prevent JavaScript access
+        secure: true, // Use HTTPS
+        sameSite: "None", // Allow cross-origin requests
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      })
       .json({ userName: user.userName, UserId: user._id });
   } catch (error) {
     console.error(error.message);
