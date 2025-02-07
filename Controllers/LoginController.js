@@ -25,15 +25,8 @@ export const login = async (req, res) => {
     if (!passOk) {
       return res.status(400).json({ error: "incorrect password" });
     }
-    const token = generateToken(res, user);
-    res
-      .cookie("token", token, {
-        httpOnly: true, // Prevent JavaScript access
-        secure: true, // Use HTTPS
-        sameSite: "None", // Allow cross-origin requests
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      })
-      .json({ userName: user.userName, UserId: user._id });
+    generateToken(res, user);
+    res.json({ userName: user.userName, UserId: user._id });
   } catch (error) {
     console.error(error.message);
     return res.status(500).json({ error: "internal server error" });
