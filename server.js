@@ -27,6 +27,10 @@ app.use(express.json());
 // Middleware to parse URL-encoded data (e.g., form submissions)
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
 mongoose
   .connect(db)
   .then((result) => {
