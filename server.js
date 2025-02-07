@@ -10,14 +10,14 @@ dotenv.config();
 const app = express();
 const db = process.env.MONGODB;
 const port = process.env.PORT;
-const frontend_url = process.env.FRONT_END_URL;
+// const frontend_url = ;
 
 //middleware
 
 app.use(
   cors({
     credentials: true,
-    origin: frontend_url,
+    origin: "https://ezzylst-frontend.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
