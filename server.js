@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 const db = process.env.MONGODB;
 const port = process.env.PORT;
-// const frontend_url = ;
+const frontend_url = process.env.FRONTEND_URL;
 
 //middleware
 
@@ -20,6 +20,7 @@ app.use(
     origin: "https://ezzylst-frontend.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 204,
   })
 );
 app.use(cookieParser());

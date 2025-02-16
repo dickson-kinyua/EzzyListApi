@@ -1,7 +1,6 @@
 import UserModel from "../models/userModel.js";
 import { missingInput } from "./missingInputChecker.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { generateToken } from "../utils/generateToken.js";
 dotenv.config();
